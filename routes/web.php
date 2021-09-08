@@ -16,3 +16,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 })->middleware(['verify.shopify'])->name('home');
+
+Route::get("refund/{adapter}", [App\Http\Controllers\RefundController::class, 'getOrderByAdapter']);
+
+Route::resource('orders', App\Http\Controllers\OrdersController::class)->middleware(['verify.shopify']);
+
+Route::get("test", [App\Http\Controllers\PruebasController::class, 'test']);
