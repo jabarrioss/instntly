@@ -165,6 +165,7 @@ return [
         /*
          * Package Service Providers...
          */
+        Ellaisys\Cognito\Providers\AwsCognitoServiceProvider::class,
 
         /*
          * Application Service Providers...

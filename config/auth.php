@@ -37,8 +37,12 @@ return [
 
     'guards' => [
         'web' => [
-            'driver' => 'session',
-            'provider' => 'users',
+            'driver' => 'cognito-session', // This line is important for using AWS Cognito as Web Driver
+            'provider' => 'merchants',
+        ],
+        'api' => [
+            'driver' => 'cognito-token', // This line is important for using AWS Cognito as API Driver
+            'provider' => 'merchants',
         ],
     ],
 
@@ -63,6 +67,10 @@ return [
         'users' => [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
+        ],
+        'merchants' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Merchant::class,
         ],
 
         // 'users' => [
