@@ -15,7 +15,7 @@ class CreateMerchantsTable extends Migration
     {
         Schema::create('merchants', function (Blueprint $table) {
             $table->id();
-            $table->string('username');
+            $table->string('username')->unique();
             $table->string('access_token')->nullable();
             $table->string('refresh_token')->nullable();
             $table->timestamps();
