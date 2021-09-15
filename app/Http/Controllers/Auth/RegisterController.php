@@ -12,6 +12,10 @@ class RegisterController extends Controller
 {
     use RegistersUsers;
 
+    public function showRegistrationForm()
+    {
+        return view('auth.register');
+    }
     public function register(Request $request)
     {
         // $validator = $request->validate([
@@ -22,20 +26,15 @@ class RegisterController extends Controller
 
 
         //Create credentials object
-        // $collection = collect($request->all());
-        // $data = $collection->only('name', 'email', 'password'); //passing 'password' is optional.
+        $collection = collect($request->all());
+        $data = $collection->only('first_name', 'email');
 
-        $collection = collect(["first_name" => "Jhonny", "email" => "oldschoolgames993@gmail.com"]);
         //Register User in cognito
-        dump($collection);
-        if ($cognitoRegistered=$this->createCognitoUser($collection)) {
-
+        if ($cognitoRegistered=$this->createCognitoUser($data)) {
             //If successful, create the user in local db
             $merchant = Merchant::create($collection->only('first_name', 'email')->toArray());
         } //End if
-            dump($cognitoRegistered);
-            dd($merchant);
         //Redirect to view
-        // return view('login');
+        return view('login');
     }
 }

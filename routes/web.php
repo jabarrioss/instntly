@@ -13,15 +13,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Auth::routes();
 Route::get('/', function () {
     return view('welcome');
 })
-    ->middleware(['verify.shopify'])
+    // ->middleware(['verify.shopify'])
     ->name('home');
 
 Route::get("refund/{adapter}", [App\Http\Controllers\RefundsController::class, 'getOrderByAdapter']);
 
-Route::resource('orders', App\Http\Controllers\OrdersController::class)->middleware(['verify.shopify']);
+Route::resource('orders', App\Http\Controllers\OrdersController::class);
 
-Route::get("register", [App\Http\Controllers\Auth\RegisterController::class, 'register']);
 Route::get("test", [App\Http\Controllers\TestsController::class, 'test']);

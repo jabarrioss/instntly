@@ -1,14 +1,19 @@
-@extends('shopify-app::layouts.default')
+@extends('layouts.app', ['pageSlug' => 'dashboard'])
+@section('styles')
+@endsection
 
 @section('content')
-    <!-- You are: (shop domain name) -->
-    <p>You are: {{ $shopDomain ?? Auth::user()->name }}</p>
+
+    {{-- <p>You are: {{ $shopDomain ?? Auth::user()->first_name }}</p> --}}
+    <div>{{now()}}</div>
+    <div><a href="{{url('orders')}}">Get Orders</a></div>
+    <div><a href="{{url('test?adapter=shopify&shop=test-store692021.myshopify.com')}}">TestsController</a></div>
 @endsection
 
 @section('scripts')
     @parent
 
     <script>
-        actions.TitleBar.create(app, { title: 'Welcome' });
+        actions.TitleBar.create(app, { title: 'Dashboard' });
     </script>
 @endsection
