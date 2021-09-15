@@ -32,7 +32,7 @@ class RegisterController extends Controller
         if ($cognitoRegistered=$this->createCognitoUser($collection)) {
 
             //If successful, create the user in local db
-            Merchant::create($collection->only('name', 'email'));
+            Merchant::create($collection('name', 'email'));
         } //End if
 
         dd($cognitoRegistered);
