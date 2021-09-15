@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Ellaisys\Cognito\AwsCognitoClaim;
 use Ellaisys\Cognito\Auth\AuthenticatesUsers as CognitoAuthenticatesUsers;
+use Illuminate\Http\Request;
+
 class LoginController extends Controller
 {
     use CognitoAuthenticatesUsers;
@@ -21,7 +23,7 @@ class LoginController extends Controller
      * 
      * @return mixed
      */
-    public function login(\Illuminate\Http\Request $request)
+    public function login(Request $request)
     {
         //Convert request to collection
         $collection = collect($request->all());
@@ -47,4 +49,18 @@ class LoginController extends Controller
         return back()->with("error", 'Failed Login');
     } //Function ends
 
+    public function apiLogin(Request $request)
+    {
+        //Convert request to collection
+        $collection = collect($request->all());
+
+        //Authenticate with Cognito Package Trait (with 'api' as the auth guard)
+        if ($claim = $this->attemptLogin($collection, 'api', 'email', 'password', true)) {
+            if ($claim instanceof AwsCognitoClaim) {
+                return $claim->getData();
+            } else {
+                return response()->json(['status' => 'error', 'message' => $claim], 400);
+            } //End if
+        } //End if
+    }
 }
