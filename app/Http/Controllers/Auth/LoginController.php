@@ -26,10 +26,11 @@ class LoginController extends Controller
     public function login(Request $request)
     {
         //Convert request to collection
-        $collection = collect($request->all());
+        $collection = collect($request->only(['email', 'password']));
         //Authenticate with Cognito Package Trait (with 'web' as the auth guard)
         if ($response = $this->attemptLogin($collection, 'web')) {
             if ($response===true) {
+                dump("Finally");
                 return redirect(route('home'))->with('success', true);
             } else if ($response===false) {
                 // If the login attempt was unsuccessful you may increment the number of attempts
