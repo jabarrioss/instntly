@@ -6,6 +6,7 @@ use App\Contracts\OrderContract;
 use App\Contracts\OrdersProviderContract;
 use App\Models\Shopify\ShopifyOrder;
 use App\Models\User;
+use Exception;
 
 class ShopifyAdapter implements OrdersProviderContract
 {
@@ -24,9 +25,13 @@ class ShopifyAdapter implements OrdersProviderContract
 
     public function setAuth($user, $pass)
     {
-        $user = User::where("name", $user)->first();
-        auth()->setUser($user);
-        $this->shop = auth()->user();
+        $user = User::find(2);
+        // $user = User::where("name", $user)->first();
+        // dump($user);
+        // auth()->setUser($user);
+        // dump(auth()->user());
+        $this->shop = $user;
+        // $this->shop = auth()->user();
     }
 
     public function getOrderById($orderId) : OrderContract
@@ -39,14 +44,19 @@ class ShopifyAdapter implements OrdersProviderContract
 
     public function getOrders()
     {
-        $orders = $this->shop
+        $request = $this->shop
         ->api()
-        ->rest('GET', "/admin/api/". $this->api_version ."/orders.json")['body']['orders'];
-        $ordersCollection = collect();
-        foreach ($orders as $order) {
-            $ordersCollection->push(new ShopifyOrder($this->shop, $order));
+        ->rest('GET', "/admin/api/". $this->api_version ."/orders.json");
+        if($request['status'] == 200 && !$request['errors']){
+            $orders = $request['body']['orders'];
+            $ordersCollection = collect();
+            foreach ($orders as $order) {
+                $ordersCollection->push(new ShopifyOrder($this->shop, $order));
+            }
+            return $ordersCollection;
+        }else{
+            throw new Exception("There's some error in the request: ". $request['body'], $request['status']);
         }
-        return $ordersCollection;
     }
 
     public function issueRefundForOrder($orderId)
