@@ -25,7 +25,6 @@ class LoginController extends Controller
     {
         //Convert request to collection
         $collection = collect($request->all());
-
         //Authenticate with Cognito Package Trait (with 'web' as the auth guard)
         if ($response = $this->attemptLogin($collection, 'web')) {
             if ($response===true) {
@@ -39,6 +38,9 @@ class LoginController extends Controller
                 //
                 $this->sendFailedLoginResponse($collection, null);
             } else {
+                dump("Login failed. dont know why");
+                dump($collection);
+                dump($response);
                 return $response;
             } //End if
         } //End if
