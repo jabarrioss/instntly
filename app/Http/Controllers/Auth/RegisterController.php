@@ -14,7 +14,6 @@ class RegisterController extends Controller
 
     public function register(Request $request)
     {
-        dump($request->all());
         // $validator = $request->validate([
         //     'name' => 'required|max:255',
         //     'email' => 'required|email|max:64|unique:users',
@@ -26,16 +25,16 @@ class RegisterController extends Controller
         // $collection = collect($request->all());
         // $data = $collection->only('name', 'email', 'password'); //passing 'password' is optional.
 
-        $collection = collect(["first_name" => "Jhonny", "email" => "jbarriossandrea@gmail.com"]);
+        $collection = collect(["first_name" => "Jhonny", "email" => "oldschoolgames993@gmail.com"]);
         //Register User in cognito
         dump($collection);
         if ($cognitoRegistered=$this->createCognitoUser($collection)) {
 
             //If successful, create the user in local db
-            Merchant::create($collection('name', 'email'));
+            $merchant = Merchant::create($collection->only('first_name', 'email')->toArray());
         } //End if
-
-        dd($cognitoRegistered);
+            dump($cognitoRegistered);
+            dd($merchant);
         //Redirect to view
         // return view('login');
     }
