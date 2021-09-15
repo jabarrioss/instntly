@@ -21,7 +21,7 @@
                 <div class="collapse show" id="laravel-examples">
                     <ul class="nav pl-4">
                         <li @if ($pageSlug == 'shopify') class="active " @endif>
-                            <a href="{{url('orders', ['adapter' => 'shopify'])}}">
+                            <a href="{{secure_url('orders', ['adapter' => 'shopify'])}}">
                                 <i class="tim-icons icon-cart"></i>
                                 <p>{{ __('Shopify') }}</p>
                             </a>
