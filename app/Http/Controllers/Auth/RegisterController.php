@@ -26,7 +26,7 @@ class RegisterController extends Controller
         // $collection = collect($request->all());
         // $data = $collection->only('name', 'email', 'password'); //passing 'password' is optional.
 
-        $collection = collect(["first_name" => "Jhonny", "email" => "descarganime2@gmail.com"]);
+        $collection = collect(["first_name" => "Jhonny", "email" => "jbarriossandrea@gmail.com"]);
         //Register User in cognito
         dump($collection);
         if ($cognitoRegistered=$this->createCognitoUser($collection)) {
