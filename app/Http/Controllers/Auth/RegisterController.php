@@ -35,6 +35,7 @@ class RegisterController extends Controller
             $merchant = Merchant::create($collection->only('first_name', 'email')->toArray());
         } //End if
         //Redirect to view
-        return view('login');
+        return redirect('login');
+        // return view('login');
     }
 }
