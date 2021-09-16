@@ -56,7 +56,7 @@ class LoginController extends Controller
         $collection = collect($request->all());
 
         //Authenticate with Cognito Package Trait (with 'api' as the auth guard)
-        if ($claim = $this->attemptLogin($collection, 'api', 'email', 'password', true)) {
+        if ($claim = $this->attemptLogin($collection, 'api', 'username', 'refresh_token', true)) {
             if ($claim instanceof AwsCognitoClaim) {
                 return $claim->getData();
             } else {
