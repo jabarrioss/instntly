@@ -6,6 +6,15 @@ use App\Http\Controllers\Controller;
 use Ellaisys\Cognito\AwsCognitoClaim;
 use Ellaisys\Cognito\Auth\AuthenticatesUsers as CognitoAuthenticatesUsers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
+use Ellaisys\Cognito\Exceptions\NoLocalUserException;
+use Symfony\Component\HttpKernel\Exception\HttpException;
+use Aws\CognitoIdentityProvider\Exception\CognitoIdentityProviderException;
+use Exception;
+use Illuminate\Validation\ValidationException;
+use Auth;
+use Illuminate\Support\Facades\Log;
+
 
 class LoginController extends Controller
 {
@@ -26,7 +35,7 @@ class LoginController extends Controller
     public function login(Request $request)
     {
         //Convert request to collection
-        $collection = collect($request->only(['email', 'password']));
+        $collection = collect($request->only(['username', 'refresh_token']));
         //Authenticate with Cognito Package Trait (with 'web' as the auth guard)
         if ($response = $this->attemptLogin($collection, 'web')) {
             if ($response===true) {
@@ -64,4 +73,55 @@ class LoginController extends Controller
             } //End if
         } //End if
     }
+
+        /**
+     * Attempt to log the user into the application.
+     *
+     * @param  \Illuminate\Support\Collection  $request
+     * @param  \string  $guard (optional)
+     * @param  \string  $paramUsername (optional)
+     * @param  \string  $paramPassword (optional)
+     * @param  \bool  $isJsonResponse (optional)
+     * 
+     * @return mixed
+     */
+    protected function attemptLogin(Collection $request, string $guard='web', string $paramUsername='email', string $paramPassword='password', bool $isJsonResponse=false)
+    {
+        try {
+            //Get key fields
+            $keyUsername = 'username';
+            $keyPassword = 'refresh_token';
+            $rememberMe = $request->has('remember')?$request['remember']:false;
+
+            //Generate credentials array
+            $credentials = [
+                $keyUsername => $request[$paramUsername], 
+                $keyPassword => $request[$paramPassword]
+            ];
+
+            //Authenticate User
+            $claim = Auth::guard($guard)->attempt($credentials, $rememberMe);
+
+        } catch (NoLocalUserException $e) {
+            Log::error('AuthenticatesUsers:attemptLogin:NoLocalUserException');
+
+            if (config('cognito.add_missing_local_user_sso')) {
+                $response = $this->createLocalUser($credentials);
+                
+                if ($response) {
+                    return $claim;
+                }
+            } //End if
+            
+            return $this->sendFailedLoginResponse($request, $e, $isJsonResponse);
+        } catch (CognitoIdentityProviderException $e) {
+            Log::error('AuthenticatesUsers:attemptLogin:CognitoIdentityProviderException');
+            return $this->sendFailedCognitoResponse($e);
+        } catch (Exception $e) {
+            Log::error('AuthenticatesUsers:attemptLogin:Exception');
+            return $this->sendFailedLoginResponse($request, $e, $isJsonResponse);
+        } //Try-catch ends
+
+        return $claim;
+    } //Function ends
 }
