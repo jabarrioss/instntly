@@ -15,6 +15,8 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 Route::get('/', function () {
+    $merchant = App\Models\Merchant::first();
+    auth()->guard('web')->setUser($merchant);
     return view('welcome');
 })
     // ->middleware(['verify.shopify'])

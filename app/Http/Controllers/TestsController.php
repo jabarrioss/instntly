@@ -7,8 +7,13 @@ use App\Models\Shopify\{
     ShopifyOrder,
     ShopifyProduct,
 };
+
 use App\Models\User;
+use App\Clients\AwsClient;
+use App\Models\Merchant;
 use App\Contracts\OrdersProviderContract;
+use Ellaisys\Cognito\AwsCognitoClient;
+use Aws\CognitoIdentityProvider\Exception\CognitoIdentityProviderException;
 
 class TestsController extends Controller
 {
@@ -22,10 +27,17 @@ class TestsController extends Controller
         $this->base_uri = "/admin/api/" . $this->api_version . "/";
 
     }
-    public function test(OrdersProviderContract $adapter)
+    // public function test(OrdersProviderContract $adapter)
+    public function test(AwsClient $client)
     {
-        $data['orders'] = $adapter->getOrders();
-        return response()->json($data, 200);
+        $m = Merchant::first();
+
+        $response = $client->getNewAccessTokenByRefreshToken($m->username, $m->refresh_token);
+        dump("lo hiciste Jhonny, eres un maldito genio!");
+        dd($response);
+        return $response;
+        // $data['orders'] = $adapter->getOrders();
+        // return response()->json($data, 200);
         // $user = User::where("name", "test-store692021.myshopify.com")->first();
         // auth()->setUser($user);
         // $this->shop = auth()->user();

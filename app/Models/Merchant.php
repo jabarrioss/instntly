@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Laravel\Sanctum\HasApiTokens;
 
 class Merchant extends Authenticatable
@@ -21,4 +22,14 @@ class Merchant extends Authenticatable
     protected $hidden = [
         'access_token',
     ];
+
+    /**
+     * Get all of the integrations for the Merchant
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function integrations(): HasMany
+    {
+        return $this->hasMany(Mint::class);
+    }
 }
