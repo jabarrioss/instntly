@@ -1,6 +1,13 @@
 <?php
 
 return [
+    /**
+     * Application base URI to do the API calls
+     */
+    
+    'instntly' => [
+        'base_uri' => env('INSTNTLY_BASE_URL')
+    ],
 
     /*
     |--------------------------------------------------------------------------
