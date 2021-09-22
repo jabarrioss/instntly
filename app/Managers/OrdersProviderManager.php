@@ -14,7 +14,7 @@ class OrdersProviderManager
             switch($adapter){
                 case 'shopify':
                     $adapter = call_user_func_array([$this, $methodName], [$adapter]);
-                    $adapter->setAuth(request()->shop, "");
+                    $adapter->setAuth(auth()->user(), "");
                     break;
                 default:
                     throw new \RuntimeException('Unknown orders provider manager adapter');

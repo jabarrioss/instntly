@@ -15,8 +15,6 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 Route::get('/', function () {
-    $merchant = App\Models\Merchant::first();
-    auth()->guard('web')->setUser($merchant);
     return view('welcome');
 })
     // ->middleware(['verify.shopify'])
@@ -24,6 +22,6 @@ Route::get('/', function () {
 
 Route::get("refund/{adapter}", [App\Http\Controllers\RefundsController::class, 'getOrderByAdapter']);
 
-Route::resource('orders', App\Http\Controllers\OrdersController::class);
+Route::resource('orders/{adapter}', App\Http\Controllers\OrdersController::class);
 
 Route::get("test", [App\Http\Controllers\TestsController::class, 'test']);

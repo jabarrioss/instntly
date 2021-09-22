@@ -25,13 +25,14 @@ class ShopifyAdapter implements OrdersProviderContract
 
     public function setAuth($user, $pass)
     {
-        $user = User::find(2);
-        // $user = User::where("name", $user)->first();
-        // dump($user);
-        // auth()->setUser($user);
-        // dump(auth()->user());
-        $this->shop = $user;
-        // $this->shop = auth()->user();
+        $integrations = $user->integrations()
+        ->where("adapter", "shopify")
+        /**
+         * I'm only fetching the first shop by request of kleverpay, this could be
+         * replaced for ->get() to get an array of stores
+         * */
+        ->first();
+        $this->shop = $integrations->integrations()->first();
     }
 
     public function getOrderById($orderId) : OrderContract
