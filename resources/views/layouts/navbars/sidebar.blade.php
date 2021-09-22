@@ -27,7 +27,7 @@
                             </a>
                         </li>
                         <li @if ($pageSlug == 'akaunting') class="active " @endif>
-                            <a href="#">
+                            <a href="{{secure_url('orders', ['adapter' => 'akaunting'])}}">
                                 <i class="tim-icons icon-bullet-list-67"></i>
                                 <p>{{ __('Akaunting') }}</p>
                             </a>

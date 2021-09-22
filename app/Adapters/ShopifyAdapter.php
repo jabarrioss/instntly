@@ -5,7 +5,6 @@ namespace App\Adapters;
 use App\Contracts\OrderContract;
 use App\Contracts\OrdersProviderContract;
 use App\Models\Shopify\ShopifyOrder;
-use App\Models\User;
 use Exception;
 
 class ShopifyAdapter implements OrdersProviderContract

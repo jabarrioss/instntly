@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Helpers\ShopifyOauth;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -14,7 +15,7 @@ use Exception;
 class User extends Authenticatable implements IShopModel
 {
     use HasApiTokens, HasFactory, Notifiable;
-    use ShopModel;
+    use ShopModel, ShopifyOauth;
     
     /**
      * The attributes that are mass assignable.
