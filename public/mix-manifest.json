@@ -1,4 +1,18 @@
 {
     "/js/app.js": "/js/app.js",
-    "/css/app.css": "/css/app.css"
+    "/css/app.css": "/css/app.css",
+    "/assets/js/app.js": "/assets/js/app.js",
+    "/assets/js/bootstrap.js": "/assets/js/bootstrap.js",
+    "/assets/js/bootstrap.min.js": "/assets/js/bootstrap.min.js",
+    "/assets/js/npm.js": "/assets/js/npm.js",
+    "/assets/css/app.css": "/assets/css/app.css",
+    "/assets/css/bootstrap-theme.min.css": "/assets/css/bootstrap-theme.min.css",
+    "/assets/css/bootstrap.min.css": "/assets/css/bootstrap.min.css",
+    "/assets/css/style.css": "/assets/css/style.css",
+    "/assets/img/shoe.png": "/assets/img/shoe.png",
+    "/assets/fonts/glyphicons-halflings-regular.eot": "/assets/fonts/glyphicons-halflings-regular.eot",
+    "/assets/fonts/glyphicons-halflings-regular.svg": "/assets/fonts/glyphicons-halflings-regular.svg",
+    "/assets/fonts/glyphicons-halflings-regular.ttf": "/assets/fonts/glyphicons-halflings-regular.ttf",
+    "/assets/fonts/glyphicons-halflings-regular.woff": "/assets/fonts/glyphicons-halflings-regular.woff",
+    "/assets/fonts/glyphicons-halflings-regular.woff2": "/assets/fonts/glyphicons-halflings-regular.woff2"
 }
