@@ -21,7 +21,7 @@ class CreateMintsTable extends Migration
             $table->string('adapter');
             $table->boolean('active')->default(true);
             $table->bigInteger('merchant_id');
-            $table->bigInteger('integration_id');
+            $table->bigInteger('integration_id')->nullable();
             $table->timestamps();
         });
     }

@@ -19,7 +19,8 @@ use Illuminate\Database\Eloquent\Model;
 class Mint extends Model
 {
     use HasFactory;
-
+    
+    protected $guarded = [];
     /**
      * Get the merchant that owns the Mint
      *

@@ -32,22 +32,17 @@ class MerchantsController extends BaseController
                 $request->except('shopifyLink')
             );
 
-            // if (User::where('name', $request->shopifyLink)->first() == null) {
-            //     $integration = new User;
-            //     $integration->name = $request->shopifyLink;
-            //     $integration->email = $request->shopifyLink;
-            //     $integration->save();
-        
-            //     $mint = new Mint;
-            //     $mint->merchant_id = $model->id;
-            //     $mint->integration_id = $integration->id;
-            //     $mint->label = "Shopify";
-            //     $mint->handle = "shopify";
-            //     $mint->adapter = "shopify";
-            //     $mint->save();
-            // }
-
+            $integration = Mint::firstOrCreate(
+                [
+                    "label" => $request->shopifyLink
+                ],
+                [
+                    'handle' => 'shopify',
+                    'adapter' => 'shopify',
+                    'merchant_id' => $model->id
+                ]);
             return [
+                "mint" => $integration,
                 "merchant" => $model,
                 "oauth_url" => User::getOauthUrl($request->shopifyLink)
             ];
