@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Http;
 
 use App\Contracts\OrdersProviderContract;
 use App\Models\Refund;
+use App\Models\User;
 
 class RefundsController extends Controller
 {
@@ -25,7 +26,7 @@ class RefundsController extends Controller
         return response()->json(["error" => true, "message" => $request->collect()['message']], $request->status());
     }
 
-    public function sendOrderToKlever(Request $request, $orderId)
+    public function sendOrderToKlever(Request $request, OrdersProviderContract $adapter)
     {
         $api_url = config('app.instntly.base_uri');
         $response = Http::withHeaders([
@@ -38,17 +39,17 @@ class RefundsController extends Controller
             "notes" => $request->notes,
             "type" => "StoreCredit",
             "userEmail" => $request->email,
-            "userFirstName" =>$request->name,
+            "userFirstName" => $request->name,
             "userLastName" => $request->lastName
         ]);
 
         if ($response->ok()) {
-            $refund = new Refund;
-            $refund->amount = $request->amount;
-            $refund->externalId = $request->id;
-            $refund->merchant_id = $request->merchant_id;
-            $refund->merchant_id = $request->integration_id;
-            $refund->save();
+            // $refund = new Refund;
+            // $refund->amount = $request->amount;
+            // $refund->externalId = $request->id;
+            // $refund->merchant_id = $request->merchant_id;
+            // $refund->merchant_id = $request->integration_id;
+            // $refund->save();
             return response()->json($response->collect()['fundOrder'], 200);
         }
 
