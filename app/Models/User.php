@@ -87,4 +87,14 @@ class User extends Authenticatable implements IShopModel
         }
         return $value;
     }
+
+    /**
+     * Get the merchant that owns the User
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function merchant()
+    {
+        return $this->belongsTo(Merchant::class);
+    }
 }

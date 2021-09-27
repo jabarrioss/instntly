@@ -19,13 +19,15 @@ class ShopifyOrder extends BaseModel implements OrderContract
         $this->order = new \stdClass();
         $this->order->id = $order->id;
         $this->order->number = $order->name;
+        $this->order->subTotal = $order->current_subtotal_price;
         if (isset($order->customer)) {
             $this->order->customer_email = $order->customer->email;
         }else{
-            $shopData = $this->shop->api()->rest('GET', '/admin/shop.json')['body']['shop'];
-            $this->order->customer_email = $shopData->email;
+            $this->order->customer_email = "";
         }
 
-        $this->order->items[] = (new ShopifyProduct($this->shop, $order->line_items))->items;
+        if (isset($order->line_items)) {
+            $this->order->items = (new ShopifyProduct($this->shop, $order->line_items))->items;
+        }
     }
 }

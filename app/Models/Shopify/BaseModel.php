@@ -19,4 +19,9 @@ class BaseModel
         $this->api_version = config('shopify-app.api_version');
         $this->base_uri = "/admin/api/" . $this->api_version . "/";
     }
+
+    public function getResource()
+    {
+        return $this->resource;
+    }
 }

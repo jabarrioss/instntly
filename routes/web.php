@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,14 +15,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 // Auth::routes();
-Route::get('/', function () {
+Route::get('/', function (Request $request) {
     return view('welcome');
 })
-    ->middleware(['verify.shopify'])
-    ->name('home');
+->middleware(['verify.shopify'])
+->name('home');
 
-Route::get("refund/{adapter}", [App\Http\Controllers\RefundsController::class, 'getOrderByAdapter']);
+Route::get("orders/{adapter}/show", [App\Http\Controllers\OrdersController::class, 'getOrderByAdapter']);
+Route::get('orders/{adapter}/index', [App\Http\Controllers\OrdersController::class, 'index']);
 
 Route::get("test", [App\Http\Controllers\TestsController::class, 'test']);
-
-Route::resource('orders/{adapter}', App\Http\Controllers\OrdersController::class);

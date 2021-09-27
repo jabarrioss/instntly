@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Models\Shopify;
+use Illuminate\Support\Str;
 
 class ShopifyProduct extends BaseModel
 {
@@ -19,16 +20,18 @@ class ShopifyProduct extends BaseModel
             $totalTax = 0;
             $product = new \stdClass();
             if ($line_item->product_exists) {
+                $product->id = $line_item->product_id;
                 $images = $this->shop
                 ->api()
                 ->rest('GET', $this->base_uri ."products/".$line_item->product_id."/images.json")['body']['images'];
                 if (count($images) > 0) {
                     $product->image = $images[0]->src;
                 }else {
-                    $product->image = "https://lorempixel.com/90/90";
+                    $product->image = secure_asset("assets/img/shoe.png");
                 }
             }else{
-                $product->image = "https://lorempixel.com/90/90";
+                $product->id = (string) Str::uuid();
+                $product->image = secure_asset("assets/img/shoe.png");
             }
     
             if ($line_item->taxable) {
