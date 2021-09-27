@@ -32,7 +32,7 @@ class MerchantsController extends BaseController
                 $request->except('shopifyLink')
             );
 
-            $integration = Mint::firstOrCreate(
+            Mint::firstOrCreate(
                 [
                     "label" => $request->shopifyLink
                 ],
@@ -42,9 +42,8 @@ class MerchantsController extends BaseController
                     'merchant_id' => $model->id
                 ]);
             return [
-                "mint" => $integration,
+                "oauth_url" => User::getOauthUrl($request->shopifyLink),
                 "merchant" => $model,
-                "oauth_url" => User::getOauthUrl($request->shopifyLink)
             ];
         });
         return $this->modelResponse($model);

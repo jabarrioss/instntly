@@ -7,6 +7,6 @@ interface OrdersProviderContract
     public function setAuth($user, $pass);
     public function getOrderById($orderId) : OrderContract;
     public function getOrders();
-    public function issueRefundForOrder($orderId);
+    public function issueRefundForOrder($orderId, $itemsRefunded, $orderNote, $customerEmail);
 
 }
