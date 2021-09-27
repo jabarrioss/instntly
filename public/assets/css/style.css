@@ -1,0 +1,64 @@
+/* === GENERAL === */
+
+body{
+	padding-top: 50px;
+	background: url('../img/texture.png') top left repeat;
+}
+.salud{
+	margin-top: -20px;
+	width: 20%;
+}
+.wrap{
+	padding-top: 50px;
+	padding-bottom:50px;
+}
+
+.header-section{
+	text-align: center;
+	-webkit-font-smoothing: antialiased;
+	text-rendering: optimizelegibility;	
+}
+
+h1{
+	font-family: 'Josefin';
+}
+
+h2{
+	font-family: 'Josefin';
+}
+
+/* === TITLE === */
+
+#title .jumbotron{
+	/* background: url('../img/banner04.jpg') 50% 0 no-repeat fixed; */
+	background-color: black 50% 0 no-repeat fixed;
+	-webkit-font-smoothing: antialiased;
+	text-rendering: optimizelegibility;
+	text-align: center;
+	color: black;
+}
+
+.img-rounded{
+	border-radius: 10%;
+	width: 90%;
+	border: 10px;
+	border-color: black;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
