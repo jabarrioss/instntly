@@ -39,9 +39,10 @@ class Debugger extends Command
      */
     public function handle()
     {
-        $merchant = Merchant::find(2);
+        $merchant = Merchant::find(3);
         $awsClient =  app()->make(AwsClient::class);
         $response = $awsClient->getNewAccessTokenByRefreshToken($merchant->username, $merchant->refresh_token);
+        $this->info($merchant->refresh_token);
         $responseData = $response->get("AuthenticationResult");
         $token = $responseData["AccessToken"];
         dump($response);
