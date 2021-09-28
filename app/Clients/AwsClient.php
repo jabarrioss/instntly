@@ -26,7 +26,7 @@ class AwsClient extends BaseCognitoClient
     public function getNewAccessTokenByRefreshToken($username, $refresh_token)
     {
         try {
-            $response = $this->client->initiateAuth([
+            $response = $this->client->adminInitiateAuth([
                 'AuthFlow' => 'REFRESH_TOKEN_AUTH',
                 'AuthParameters' => [
                     'REFRESH_TOKEN' => $refresh_token,

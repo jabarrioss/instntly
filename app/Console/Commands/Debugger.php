@@ -45,6 +45,8 @@ class Debugger extends Command
         $this->info($merchant->refresh_token);
         $responseData = $response->get("AuthenticationResult");
         $token = $responseData["AccessToken"];
+        $user_data = $awsClient->getUserByAccessToken($token);
+        dump($user_data);
         dump($response);
         $this->info($token);
         return 0;
