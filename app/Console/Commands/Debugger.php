@@ -42,12 +42,8 @@ class Debugger extends Command
         $merchant = Merchant::find(3);
         $awsClient =  app()->make(AwsClient::class);
         $response = $awsClient->getNewAccessTokenByRefreshToken($merchant->username, $merchant->refresh_token);
-        $this->info($merchant->refresh_token);
         $responseData = $response->get("AuthenticationResult");
-        $token = $responseData["AccessToken"];
-        $user_data = $awsClient->getUserByAccessToken($token);
-        dump($user_data);
-        dump($response);
+        $token = $responseData["IdToken"];
         $this->info($token);
         return 0;
     }
