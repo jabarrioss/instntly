@@ -22,7 +22,7 @@ trait Refunds
             $awsClient =  app()->make(AwsClient::class);
             $response = $awsClient->getNewAccessTokenByRefreshToken($merchant->username, $merchant->refresh_token);
             $responseData = $response->get("AuthenticationResult");
-            $token = $responseData["AccessToken"];
+            $token = $responseData["IdToken"];
         }
         $api_url = config('app.instntly.base_uri');
         $response = Http::withHeaders([

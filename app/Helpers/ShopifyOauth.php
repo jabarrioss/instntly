@@ -30,7 +30,7 @@ trait ShopifyOauth
          * Pass your redirect URI as the second argument
          */
         $redirect = $api->getAuthUrl(config('shopify-app.api_scopes'), config('shopify-app.api_redirect'));
-        $redirect = $redirect."&merchant_id=".$merchant_id;
+        // $redirect = $redirect."&merchant_id=".$merchant_id;
         return $redirect;
         }else {
             // We now have a code, lets grab the access token
