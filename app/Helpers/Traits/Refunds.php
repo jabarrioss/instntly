@@ -11,7 +11,7 @@ trait Refunds
     public function sendOrderToKlever($data, $merchant)
     {
         if (config('app.env') == 'local') {
-            $response = Http::post("https://dev-api.kleverpay.app/auth/login", 
+            $response = Http::post(config('app.instntly.base_uri')."/auth/login", 
             [
                 "email"=> "merchant01@kleverlabs.com",
                 "password"=> "zxcvbnm1"
@@ -20,8 +20,7 @@ trait Refunds
             $token = $response->collect()['token'];
         }else{
             $awsClient =  app()->make(AwsClient::class);
-            $response = $awsClient
-            ->getNewAccessTokenByRefreshToken($merchant->username, $merchant->refresh_token);
+            $response = $awsClient->getNewAccessTokenByRefreshToken($merchant->username, $merchant->refresh_token);
             $responseData = $response->get("AuthenticationResult");
             $token = $responseData["AccessToken"];
         }

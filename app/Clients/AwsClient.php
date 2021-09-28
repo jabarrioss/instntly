@@ -30,7 +30,7 @@ class AwsClient extends BaseCognitoClient
                 'AuthFlow' => 'REFRESH_TOKEN_AUTH',
                 'AuthParameters' => [
                     'REFRESH_TOKEN' => $refresh_token,
-                    'SECRET_HASH' => $this->cognitoSecretHash($username),
+                    // 'SECRET_HASH' => $this->cognitoSecretHash($username),
                 ],
                 'ClientId' => $this->clientId,
                 'UserPoolId' => $this->poolId,
