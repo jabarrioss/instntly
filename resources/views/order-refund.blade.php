@@ -5,7 +5,7 @@
                 <div class="jumbotron">
                 
                 <div class="container-fluid">
-                    <h1>KLEVER</h1>
+                    <h1>Instntly</h1>
                 </div><!-- .container-fluid -->
                 <a class="btn btn-primary" href="" data-toggle="modal" data-target="#modalRefund">Refund Modal</a>
                 

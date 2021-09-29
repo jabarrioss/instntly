@@ -34,7 +34,7 @@ class ShopifyAdapter implements OrdersProviderContract
             $integrations = $user->integrations()
             ->where("adapter", "shopify")
             /**
-             * I'm only fetching the first shop by request of kleverpay, this could be
+             * I'm only fetching the first shop by request of instntly, this could be
              * replaced for ->get() to get an array of stores
              * */
             ->first();
