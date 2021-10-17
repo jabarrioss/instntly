@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Contracts\OrdersProviderContract;
+use App\Models\User;
 
 class OrdersController extends Controller
 {
@@ -24,6 +25,7 @@ class OrdersController extends Controller
         $data['order'] = $adapter->getOrderById($request->id);
         if($request->has('shop')){
             $data['shopDomain'] = $request->shop;
+            $data['shop'] = User::where('name', $request->shop)->first();
         }
         if ($request->accepts(['text/html'])) {
             return view('order-refund', $data);

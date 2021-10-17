@@ -6,7 +6,8 @@ return [
      */
     
     'instntly' => [
-        'base_uri' => env('INSTNTLY_BASE_URL')
+        'base_uri' => env('INSTNTLY_BASE_URL'),
+        'dashboard_url' => env('INSTNTLY_DASHBOARD_URL', 'https://dev-dashboard.kleverpay.app')
     ],
 
     /*
