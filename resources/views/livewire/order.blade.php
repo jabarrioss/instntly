@@ -60,9 +60,8 @@
                   <p class="color-gris"> Will not be shared with the customer </p>
                 </div>
               </div>
-
             </div>
-            <div class="col-md-3 marginright-1">
+            <div class="col-md-3">
               
                 <div class="row box-container">
                   <label class="cabecero-1"for="inputEmailCustomer" style="width:100%;">Customer Email</label>
@@ -86,16 +85,11 @@
                       <button class="btn btn-primary" wire:click="refundWithInstntly" >Refund Order</button>
                     </div>
                   </div> <!-- CONTAINER -->
-                </div> <!-- ROW -->
-              
+                </div> <!-- ROW -->      
             </div>
           </div>
-        </div>
-
-
-        
-
       </div>
+    </div>
 
       <div class="modal-footer">
         
