@@ -16498,7 +16498,7 @@ h1.entry-title {
     margin-right: auto;
 }
 
-.checkbox
+.checkbox1
 {
     margin-right: 10px;
     max-width: 21px;
@@ -16509,14 +16509,20 @@ h1.entry-title {
 
 }
 
-.checkbox:checked
+.checkbox1:checked
 {
     background: #4bab63;
 }
 
-.checkbox:checked:after
+.checkbox1:checked:after
 {
     border: 3px solid #fff;
+    border-top: 0;
+    border-left: 0;
+    width: 7px;
+    height: 12px;
+    left: 4px;
+    top: 0px;
 }
 
 .texto-pequeno

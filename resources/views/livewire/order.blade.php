@@ -98,16 +98,16 @@
                     </div>
                     <div class="paddingtop-1 padding-container-1 border-1">
                       <div class="d-flex">
-                        <input class="checkbox" type="checkbox" name="tax">
+                        <input class="checkbox1" type="checkbox" name="tax">
                         <h5>Tax</h5>
                       </div>
                       <div class="d-flex">
-                        <input class="checkbox" type="checkbox" name="shipping">
+                        <input class="checkbox1" type="checkbox" name="shipping">
                         <h5>Shipping</h5>
                       </div>
                     </div>
-                    <div class="padding-container-1">
-                      <button class="btn btn-primary" wire:click="refundWithInstntly" >Refund Order</button>
+                    <div class="padding-container-1 paddingtop-1">
+                      <button class="btn btn-primary w-100" wire:click="refundWithInstntly" >Refund Order</button>
                     </div>
                   </div> <!-- CONTAINER -->
                 </div> <!-- ROW -->      
