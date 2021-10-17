@@ -16,8 +16,7 @@
         </div>
         @endif
 
-        <h3>Refund Order {{$orderNumber}}</h3>
-        <span class="text-right" wire:loading><i class="fa fa-circle-o-notch fa-spin"></i></span>
+        <h3>Refund Order {{$orderNumber}} <span class="text-right" wire:loading><i class="fa fa-circle-o-notch fa-spin"></i></span></h3>
       </div>
 
       <div class="modal-body background-gray">
