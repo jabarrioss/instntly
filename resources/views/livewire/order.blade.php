@@ -78,7 +78,7 @@
                           <p class="texto-pequeno color-gris">{{$itemsCount}} Item(s)</p>
                         </div>
                         <div class="texto-derecha d-flex">
-                          <p class="margin-auto">0</p>
+                          <p class="margin-auto">{{$itemsSubtotal}}</p>
                         </div>
                       </div>
                       <div class="d-flex">

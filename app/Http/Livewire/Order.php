@@ -41,6 +41,7 @@ class Order extends Component
         $this->itemsCount = 0;
         $this->orderNote = "";
         $this->refundResponse = ["status" => "", "message" => ""];
+        $this->itemsSubtotal = 0;
     }
 
     public function refundWithInstntly()
@@ -69,13 +70,17 @@ class Order extends Component
     {
         $this->selectedItems[$item] = $qty;
         $totalItems = 0;
-        $this->orderItems = $this->orderItems->map(function($orderItem) use ($item, $qty){
+        $subTotal = 0;
+        $this->orderItems = $this->orderItems->map(function($orderItem) use ($item, $qty, &$subTotal){
             if ($orderItem['id'] == $item) {
                 $orderItem['amount'] = $orderItem['price'] * $qty;
             }
+            $subTotal = $subTotal + (isset($orderItem['amount']) ? $orderItem['amount'] : 0);
             return $orderItem;
         });
 
+        $this->itemsSubtotal = $subTotal;
+        
         foreach ($this->selectedItems as $item) {
             $totalItems += $item;
         }
