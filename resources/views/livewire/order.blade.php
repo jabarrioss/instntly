@@ -24,7 +24,7 @@
         <div class="container-fluid">          
           <div class="row">
             <div class="col-md-8 marginright-1">
-            <div class="box-container">
+            <div class="box-container row-margenes">
               @foreach ($orderItems as $item)
               <div class="row d-flex" :write:key="{{$loop->index}}"> <!-- ITEM ROW -->
                 <div class="col-md-2">
@@ -68,20 +68,45 @@
                   <input type="email" wire:model='customerEmail' class="form-control" id="inputEmailCustomer" placeholder="email@mail.com">
                 </div>
 
-                <div class="row box-container">
-                  <div class="col-md-12">
-                    <div>
+                <div class="row box-container-1">
+                  <div class="col-md-12 padding-0">
+                    <div class="padding-container-1 border-1">
                       <h3 class="cabecero-2">Summary</h3>
-                      <h5 >Items Subtotal</h5>
-                      <p>{{$itemsCount}} Item(s)</p>
+                      <!-- Aqui empiezan los textos -->
+                      <div class="d-flex">
+                        <div class="texto-izquierda marginright-auto">
+                          <h5 >Items Subtotal</h5>
+                          <p>{{$itemsCount}} Item(s)</p>
+                        </div>
+                        <div class="texto-derecha">
+                          <p>0</p>
+                        </div>
+                      </div>
+                      <div class="d-flex">
+                          <p class="marginright-auto">tax</p>
+                          <p>0</p>
+                      </div>
+                      <div class="d-flex">
+                          <p class="marginright-auto">shipping</p>
+                          <p>0</p>
+                      </div>
+                      <div class="d-flex">
+                          <p class="marginright-auto">total</p>
+                          <p>0</p>
+                      </div>
+                      <!-- Aqui terminan -->
                     </div>
-                    <div>
-                      <input type="checkbox" name="tax">
-                      <h5>Tax</h5>
-                      <input type="checkbox" name="shipping">
-                      <h5>Shipping</h5>
+                    <div class="paddingtop-1 padding-container-1 border-1">
+                      <div class="d-flex">
+                        <input type="checkbox" name="tax">
+                        <h5>Tax</h5>
+                      </div>
+                      <div class="d-flex">
+                        <input type="checkbox" name="shipping">
+                        <h5>Shipping</h5>
+                      </div>
                     </div>
-                    <div>
+                    <div class="padding-container-1">
                       <button class="btn btn-primary" wire:click="refundWithInstntly" >Refund Order</button>
                     </div>
                   </div> <!-- CONTAINER -->
