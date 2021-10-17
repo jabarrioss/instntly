@@ -16402,17 +16402,17 @@ h1.entry-title {
 
 .marginbottom-0
 {
-    margin-botom: 0px;
+    margin-bottom: 0px;
 }
 
 .marginbottom-1
 {
-    margin-botom: 5px;
+    margin-bottom: 5px;
 }
 
 .marginbottom-2
 {
-    margin-botom: 10px;
+    margin-bottom: 10px;
 }
 
 .margin-auto
@@ -16483,10 +16483,10 @@ h1.entry-title {
 
 .checkbox1
 {
-    margin-right: 10px;
+    margin: auto 10px auto 0 !important;
     max-width: 21px;
     max-height: 21px;
-    border: 3px solid #4bab63;
+    border: 3px solid #4bab63 !important;
     transition: 0.5s;
     border-radius: 3px;
 
@@ -16506,11 +16506,6 @@ h1.entry-title {
     height: 12px;
     left: 4px;
     top: 0px;
-}
-
-.texto-pequeno
-{
-    font-size: 10px;
 }
 
 .texto-pequeno
