@@ -56,7 +56,7 @@
               <div class="row box-container">
                 <div class="">
                   <label class="marginbottom-2" for="internalNote">Internal Note</label>
-                  <input class="marginbottom-5" wire:model="orderNote" type="text" class="form-control" id="internalNote" placeholder="This is an internal note that assists in the reason for return.">
+                  <input wire:model="orderNote" type="text" class="form-control marginbottom-5" id="internalNote" placeholder="This is an internal note that assists in the reason for return.">
                   <p class="color-gris"> Will not be shared with the customer </p>
                 </div>
               </div>
