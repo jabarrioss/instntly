@@ -16537,5 +16537,5 @@ h1.entry-title {
 
 .fuentes-modal
 {
-    font-family: "Helvetica Neue", sans-serif;
+    font-family: "Helvetica Neue", sans-serif !important;
 }
