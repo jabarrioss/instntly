@@ -23,7 +23,7 @@
       <div class="modal-body">
 
         <div class="container-fluid">
-          
+          a
           <div class="row">
             <div class="col-md-9">
               @foreach ($orderItems as $item)
@@ -63,7 +63,6 @@
 
             </div>
             <div class="col-md-3">
-              
                 <div class="row">
                   <label for="inputEmailCustomer" style="width:100%;">Customer Email</label>
                   <input type="email" wire:model='customerEmail' class="form-control" id="inputEmailCustomer" placeholder="email@mail.com">
