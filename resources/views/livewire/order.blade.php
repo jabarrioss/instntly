@@ -56,7 +56,7 @@
               <div class="row box-container">
                 <div class="">
                   <label class="marginbottom-2" for="internalNote">Internal Note</label>
-                  <input wire:model="orderNote" type="text" class="form-control marginbottom-5" id="internalNote" placeholder="This is an internal note that assists in the reason for return.">
+                  <input wire:model="orderNote" type="text" class="form-control marginbottom-1" id="internalNote" placeholder="This is an internal note that assists in the reason for return.">
                   <p class="color-gris"> Will not be shared with the customer </p>
                 </div>
               </div>
@@ -75,7 +75,7 @@
                       <!-- Aqui empiezan los textos -->
                       <div class="d-flex">
                         <div class="texto-izquierda marginright-auto">
-                          <h5 >Items Subtotal</h5>
+                          <h5 class="marginbottom-0">Items Subtotal</h5>
                           <p class="texto-pequeno color-gris">{{$itemsCount}} Item(s)</p>
                         </div>
                         <div class="texto-derecha d-flex">
@@ -96,7 +96,7 @@
                       </div>
                       <!-- Aqui terminan -->
                     </div>
-                    <div class="paddingtop-1 padding-container-1 border-1">
+                    <div class="paddingtop-1 padding-container-1 border-1 marginbottom-2">
                       <div class="d-flex">
                         <input class="checkbox1" type="checkbox" name="tax">
                         <h5>Tax</h5>
@@ -106,7 +106,7 @@
                         <h5>Shipping</h5>
                       </div>
                     </div>
-                    <div class="padding-container-1 paddingtop-1">
+                    <div class="padding-container-1">
                       <button class="btn btn-primary w-100" wire:click="refundWithInstntly" >Refund Order</button>
                     </div>
                   </div> <!-- CONTAINER -->

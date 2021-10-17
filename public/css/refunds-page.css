@@ -16457,7 +16457,7 @@ h1.entry-title {
 
 .padding-0
 {
-    padding: 0;
+    padding: 0 !important;
 }
 
 .paddingtop-1
