@@ -73,9 +73,9 @@
                     <h3>Summary</h3>
                     
                     <h5 >Items Subtotal</h5> <br> <p>{{$itemsCount}} Item(s)</p>
-                    
+                    <input type="checkbox" name="tax">
                     <h5>Tax</h5>
-
+                    <input type="checkbox" name="shipping">
                     <h5>Shipping</h5>
 
                     <hr>
