@@ -16480,3 +16480,29 @@ h1.entry-title {
 {
     margin-right: auto;
 }
+
+.checkbox
+{
+    margin-right: 10px;
+    max-width: 21px;
+    max-height: 21px;
+    border: 3px solid #4bab63;
+    transition: 0.5s;
+    border-radius: 3px;
+
+}
+
+.checkbox:checked
+{
+    background: #4bab63;
+}
+
+.checkbox:checked:after
+{
+    border: 3px solid #fff;
+}
+
+.texto-pequeno
+{
+    font-size: 10px;
+}

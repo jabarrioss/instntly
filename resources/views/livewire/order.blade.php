@@ -76,10 +76,10 @@
                       <div class="d-flex">
                         <div class="texto-izquierda marginright-auto">
                           <h5 >Items Subtotal</h5>
-                          <p>{{$itemsCount}} Item(s)</p>
+                          <p class="texto-pequeno color-gris">{{$itemsCount}} Item(s)</p>
                         </div>
-                        <div class="texto-derecha">
-                          <p>0</p>
+                        <div class="texto-derecha d-flex">
+                          <p class="margin-auto">0</p>
                         </div>
                       </div>
                       <div class="d-flex">
@@ -98,11 +98,11 @@
                     </div>
                     <div class="paddingtop-1 padding-container-1 border-1">
                       <div class="d-flex">
-                        <input type="checkbox" name="tax">
+                        <input class="checkbox" type="checkbox" name="tax">
                         <h5>Tax</h5>
                       </div>
                       <div class="d-flex">
-                        <input type="checkbox" name="shipping">
+                        <input class="checkbox" type="checkbox" name="shipping">
                         <h5>Shipping</h5>
                       </div>
                     </div>
