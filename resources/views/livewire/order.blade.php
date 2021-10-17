@@ -70,7 +70,7 @@
                 <div class="row box-container-1">
                   <div class="col-md-12 padding-0">
                     <div class="padding-container-1 border-1">
-                      <h3 class="cabecero-2">Summary</h3>
+                      <h3 class="cabecero-2 margin-auto">Summary</h3>
                       <!-- Aqui empiezan los textos -->
                       <div class="d-flex">
                         <div class="texto-izquierda marginright-auto">
