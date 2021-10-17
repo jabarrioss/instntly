@@ -20,66 +20,71 @@
         <span class="text-right" wire:loading><i class="fa fa-circle-o-notch fa-spin"></i></span>
       </div>
 
-      <div class="modal-body">
-        a
+      <div class="modal-body background-gray">
         <div class="container-fluid">          
           <div class="row">
-            <div class="col-md-9">
+            <div class="col-md-8 marginright-1">
+            <div class="box-container">
               @foreach ($orderItems as $item)
-              <div class="row" :write:key="{{$loop->index}}"> <!-- ITEM ROW -->
+              <div class="row d-flex" :write:key="{{$loop->index}}"> <!-- ITEM ROW -->
                 <div class="col-md-2">
                   <img class="img-rounded" alt="" src="{{$item['image']}}" >
                 </div>
                 <div class="col-md-6">
                         <div class="row">
-                            <p><strong> {{$item['title']}} </strong></p>
+                            <p class="marginbottom-0"><strong> {{$item['title']}} </strong></p>
                         </div>
                       <div class="row" style="color: gray;">
                         <p>${{$item['price']}}</p>
             
                       </div>
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-2 margin-auto">
                     <select wire:change='updateSelectedItems("{{$item['id']}}", $event.target.value, "{{$item['price']}}")' class="form-control" id="exampleFormControlSelect1">
                         @for ($i = 0; $i < $item['quantity']+1; $i++)
                             <option value="{{$i}}">{{$i}}</option>
                         @endfor
                     </select>
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-2 margin-auto">
                     <p><strong>${{$item['amount'] ?? 0}}</strong></p>
                 </div>
               </div> <!-- END ITEM ROW -->
               @endforeach
+              </div>
 
-              <div class="row">
+              <div class="row box-container">
                 <div class="">
-                  <label for="internalNote">Internal Note</label>
-                  <input wire:model="orderNote" type="text" class="form-control" id="internalNote" placeholder="This is an internal note that assists in the reason for return.">
-                  <p style="color: grey;"> Will not be shared with the customer </p>
+                  <label class="marginbottom-2" for="internalNote">Internal Note</label>
+                  <input class="marginbottom-5" wire:model="orderNote" type="text" class="form-control" id="internalNote" placeholder="This is an internal note that assists in the reason for return.">
+                  <p class="color-gris"> Will not be shared with the customer </p>
                 </div>
               </div>
 
             </div>
-            <div class="col-md-3">
+            <div class="col-md-3 marginright-1">
               
-                <div class="row">
-                  <label for="inputEmailCustomer" style="width:100%;">Customer Email</label>
+                <div class="row box-container">
+                  <label class="cabecero-1"for="inputEmailCustomer" style="width:100%;">Customer Email</label>
                   <input type="email" wire:model='customerEmail' class="form-control" id="inputEmailCustomer" placeholder="email@mail.com">
                 </div>
 
-                <div class="row">
-                  <div class="container">
-                    <h3>Summary</h3>
-                    
-                    <h5 >Items Subtotal</h5> <br> <p>{{$itemsCount}} Item(s)</p>
-                    <input type="checkbox" name="tax">
-                    <h5>Tax</h5>
-                    <input type="checkbox" name="shipping">
-                    <h5>Shipping</h5>
-
-                    <hr>
-                    <button class="btn btn-primary" wire:click="refundWithInstntly" >Refund Order</button>
+                <div class="row box-container">
+                  <div class="col-md-12">
+                    <div>
+                      <h3 class="cabecero-2">Summary</h3>
+                      <h5 >Items Subtotal</h5>
+                      <p>{{$itemsCount}} Item(s)</p>
+                    </div>
+                    <div>
+                      <input type="checkbox" name="tax">
+                      <h5>Tax</h5>
+                      <input type="checkbox" name="shipping">
+                      <h5>Shipping</h5>
+                    </div>
+                    <div>
+                      <button class="btn btn-primary" wire:click="refundWithInstntly" >Refund Order</button>
+                    </div>
                   </div> <!-- CONTAINER -->
                 </div> <!-- ROW -->
               
