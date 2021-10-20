@@ -4,6 +4,7 @@ namespace App\Helpers;
 use Osiset\BasicShopifyAPI\BasicShopifyAPI;
 use Osiset\BasicShopifyAPI\Options;
 use Osiset\BasicShopifyAPI\Session;
+use Osiset\ShopifyApp\Objects\Values\ShopDomain;
 
 use App\Models\Merchant;
 
@@ -11,6 +12,7 @@ trait ShopifyOauth
 {
     public static function getOauthUrl($shop)
     {
+        $shop = (new ShopDomain($shop))->toNative();
         $merchant_id = self::findMerchantWhoOwnsThisStore();
         $options = new Options();
         $options->setVersion(config('shopify-app.api_version'));
