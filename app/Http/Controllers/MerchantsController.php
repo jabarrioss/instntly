@@ -7,6 +7,7 @@ use App\Models\Merchant;
 use App\Models\Mint;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Osiset\ShopifyApp\Objects\Values\ShopDomain;
 
 class MerchantsController extends BaseController
 {
@@ -34,7 +35,7 @@ class MerchantsController extends BaseController
 
             Mint::firstOrCreate(
                 [
-                    "label" => $request->shopifyLink
+                    "label" => (new ShopDomain($request->shopifyLink))->toNative()
                 ],
                 [
                     'handle' => 'shopify',

@@ -5,6 +5,7 @@ namespace App\Observers;
 use App\Models\Merchant;
 use App\Models\User;
 use App\Models\Mint;
+use Osiset\ShopifyApp\Objects\Values\ShopDomain;
 
 class MerchantObserver
 {
@@ -16,12 +17,13 @@ class MerchantObserver
      */
     public function created(Merchant $merchant)
     {
-        $shop = User::where('name', request()->shopifyLink)->first();
+        $shopLink = (new ShopDomain(request()->shopifyLink))->toNative();
+        $shop = User::where('name', $shopLink)->first();
         if(!is_null($shop) && $shop->merchant_id == 0){
             $shop->merchant_id = $merchant->id;
             $integration = Mint::firstOrCreate(
                 [
-                    "label" => request()->shopifyLink
+                    "label" => $shopLink
                 ],
                 [
                     'handle' => 'shopify',
