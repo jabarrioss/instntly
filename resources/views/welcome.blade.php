@@ -51,7 +51,7 @@
   <div class="elementor-button-wrapper">
     <a  href="{{config('app.instntly.dashboard_url')}}/signUp?fromCommercePlatform=shopify&shopifyLink={{Auth::user()->name}}" target="_blank" class="elementor-button-link elementor-button elementor-size-md" role="button">
     <span class="elementor-button-content-wrapper">
-    <span class="elementor-button-text">Sign Up</span>
+    <span class="elementor-button-text">Create a Free Account</span>
     </span>
     </a>
     </div>
