@@ -43,6 +43,6 @@ trait Refunds
             return ["error" => false, "fundOrderId" => $response->collect()['fundOrder']['fundOrderId']];
         }
 
-        return ["error" => true, "message" => $response->json()];
+        return ["error" => true, "message" => $response->body()];
     }
 }
