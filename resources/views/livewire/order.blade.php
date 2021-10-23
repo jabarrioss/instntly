@@ -1,5 +1,5 @@
 <div wire:ignore.self class="modal fade" id="modalRefund">
-  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+  <div class="modal-dialog modal-dialog-centered modal-lg fuentes-modal" role="document">
     <div class="modal-content">
       
       <div class="modal-header">
@@ -21,8 +21,8 @@
 
       <div class="modal-body background-gray">
         <div class="container-fluid">          
-          <div class="row">
-            <div class="col-md-8 marginright-1">
+          <div class="row d-flex">
+            <div class="col-md-8 marginright-1 marginleft-auto">
             <div class="box-container row-margenes">
               @foreach ($orderItems as $item)
               <div class="row d-flex" :write:key="{{$loop->index}}"> <!-- ITEM ROW -->
@@ -60,17 +60,17 @@
                 </div>
               </div>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-3 marginright-auto">
               
                 <div class="row box-container">
-                  <label class="cabecero-1"for="inputEmailCustomer" style="width:100%;">Customer Email</label>
+                  <label class="cabecero-1"for="inputEmailCustomer">Customer Email</label>
                   <input type="email" wire:model='customerEmail' class="form-control" id="inputEmailCustomer" placeholder="email@mail.com">
                 </div>
 
                 <div class="row box-container-1">
                   <div class="col-md-12 padding-0">
                     <div class="padding-container-1 border-1">
-                      <h3 class="cabecero-2">Summary</h3>
+                      <h3 class="cabecero-2 margin-auto">Summary</h3>
                       <!-- Aqui empiezan los textos -->
                       <div class="d-flex">
                         <div class="texto-izquierda marginright-auto">

@@ -61,7 +61,7 @@ img.emoji {
 				<div class="elementor-widget-container">
                     @if ($shop->merchant_id)
                     <div class="elementor-button-wrapper">
-                        <a href="{{config('app.instntly.dashboard_url')}}" target="_blank" class="elementor-button-link elementor-button elementor-size-md" role="button">
+                        <a href="{{config('app.instntly.dashboard_url')}}" target="_blank" class="fuentes-modal elementor-button-link elementor-button elementor-size-md" role="button">
                         <span class="elementor-button-content-wrapper">
                         <span class="elementor-button-text">Go to Instntly Dashboard</span>
                         </span>
