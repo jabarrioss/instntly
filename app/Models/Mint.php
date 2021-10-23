@@ -13,7 +13,7 @@ use Illuminate\Database\Eloquent\Model;
  * Created date: 20/09/2021
  * Modified date: 20/09/2021
  *
- * Developed by: Jhonny B. Sandrea for Kleverpay
+ * Developed by: Jhonny B. Sandrea for Instntlypay
  */
 
 class Mint extends Model

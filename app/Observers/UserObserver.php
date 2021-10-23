@@ -44,7 +44,8 @@ class UserObserver
      */
     public function deleted(User $user)
     {
-        //
+        $user->merchant_id = 0;
+        $user->save();
     }
 
     /**
@@ -55,7 +56,14 @@ class UserObserver
      */
     public function restored(User $user)
     {
-        //
+        if($mint = Mint::where('label', $user->name)->first()){
+            $mint->integration_id = $user->id;
+            $user->merchant_id = $mint->merchant_id;
+            $mint->save();
+        }else{
+            $user->merchant_id = 0;
+        }
+        $user->save();
     }
 
     /**
