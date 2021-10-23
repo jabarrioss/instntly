@@ -72,7 +72,6 @@
   <div class="elementor-widget-wrap elementor-element-populated">
       <div class="elementor-element elementor-element-7079502 elementor-widget elementor-widget-image" data-id="7079502" data-element_type="widget" data-widget_type="image.default">
   <div class="elementor-widget-container">
-                    <img src="https://kleverpay.app/wp-content/uploads/2021/08/Instacard-Refunds.png" title="" alt="" />															</div>
   </div>
   </div>
   </div>
