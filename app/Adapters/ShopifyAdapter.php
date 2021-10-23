@@ -108,7 +108,7 @@ class ShopifyAdapter implements OrdersProviderContract
         $data->lastName = $customerEmail;
         $data->merchant_id = $this->shop->merchant->id;
         $data->integration_id = $this->shop->id;
-        $refundResponse = $this->sendOrderToKlever($data, $this->shop->merchant);
+        $refundResponse = $this->sendOrderToInstntly($data, $this->shop->merchant);
         if ($refundResponse['error']) {
             return ["status" => "error", "message" => $refundResponse['message']];
         }

@@ -19,7 +19,7 @@ class CreateRefundsTable extends Migration
             $table->bigInteger("merchant_id");
             $table->bigInteger("integration_id");
             $table->bigInteger("external_id");
-            $table->bigInteger("klever_id");
+            $table->bigInteger("Instntly_id");
             $table->timestamps();
         });
     }

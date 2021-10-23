@@ -10,7 +10,7 @@ use Aws\CognitoIdentityProvider\Exception\CognitoIdentityProviderException;
  * Created date: 20/09/2021
  * Modified date: 20/09/2021
  *
- * Developed by: Jhonny B. Sandrea for Kleverpay
+ * Developed by: Jhonny B. Sandrea for Instntly
  */
 class AwsClient extends BaseCognitoClient
 {

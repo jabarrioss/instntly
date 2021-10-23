@@ -8,7 +8,7 @@ use App\Clients\AwsClient;
 
 trait Refunds
 {
-    public function sendOrderToKlever($data, $merchant)
+    public function sendOrderToInstntly($data, $merchant)
     {
         if (config('app.env') == 'local') {
             $response = Http::post(config('app.instntly.base_uri')."/auth/login", 

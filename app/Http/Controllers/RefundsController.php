@@ -11,7 +11,7 @@ use App\Models\User;
 
 class RefundsController extends Controller
 {
-    public function loginToKlever(Request $request)
+    public function loginToInstntly(Request $request)
     {
         $api_url = config('app.instntly.base_uri');
         $response = Http::post($api_url."/auth/login", [
@@ -26,7 +26,7 @@ class RefundsController extends Controller
         return response()->json(["error" => true, "message" => $request->collect()['message']], $request->status());
     }
 
-    public function sendOrderToKlever(Request $request, OrdersProviderContract $adapter)
+    public function sendOrderToInstntly(Request $request, OrdersProviderContract $adapter)
     {
         $api_url = config('app.instntly.base_uri');
         $response = Http::withHeaders([
@@ -53,7 +53,7 @@ class RefundsController extends Controller
             return response()->json($response->collect()['fundOrder'], 200);
         }
 
-        return response()->json(["error" => true, "message" => $request->collect()['message']], $request->status());
+        return response()->json(["error" => true, "message" => $request->collect()['message'], "response" => $response->json()], $request->status());
 
     }
 }
