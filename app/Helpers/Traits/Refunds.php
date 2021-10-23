@@ -13,7 +13,7 @@ trait Refunds
         if (config('app.env') == 'local') {
             $response = Http::post(config('app.instntly.base_uri')."/auth/login", 
             [
-                "email"=> "merchant01@kleverlabs.com",
+                "email"=> "merchant01@Instntlylabs.com",
                 "password"=> "zxcvbnm1"
             ]);
 
@@ -43,6 +43,6 @@ trait Refunds
             return ["error" => false, "fundOrderId" => $response->collect()['fundOrder']['fundOrderId']];
         }
 
-        return ["error" => true, "message" => $response->body()];
+        return ["error" => true, "message" => $response->collect()['message']];
     }
 }
