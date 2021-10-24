@@ -17,7 +17,11 @@ trait Refunds
                 "password"=> "zxcvbnm1"
             ]);
 
-            $token = $response->collect()['token'];
+            if ($response->status() == 200) {
+                $token = $response->collect()['token'];
+            }else{
+                return ["error" => true, "message" => $response->collect()['message']['message']];
+            }
         }else{
             $awsClient =  app()->make(AwsClient::class);
             $response = $awsClient->getNewAccessTokenByRefreshToken($merchant->username, $merchant->refresh_token);

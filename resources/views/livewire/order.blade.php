@@ -54,7 +54,7 @@
 
               <div class="row box-container">
                 <div class="">
-                  <label class="marginbottom-2" for="internalNote">Internal Note</label>
+                  <label class="marginbottom-2 cabecero-1" for="internalNote">Internal Note</label>
                   <input wire:model="orderNote" type="text" class="form-control marginbottom-1" id="internalNote" placeholder="This is an internal note that assists in the reason for return.">
                   <p class="color-gris"> Will not be shared with the customer </p>
                 </div>
@@ -70,7 +70,7 @@
                 <div class="row box-container-1">
                   <div class="col-md-12 padding-0">
                     <div class="padding-container-1 border-1">
-                      <h3 class="cabecero-2 margin-auto">Summary</h3>
+                      <label class="cabecero-1 margin-auto">Summary</label>
                       <!-- Aqui empiezan los textos -->
                       <div class="d-flex">
                         <div class="texto-izquierda marginright-auto">
@@ -82,26 +82,26 @@
                         </div>
                       </div>
                       <div class="d-flex">
-                          <p class="marginright-auto">tax</p>
-                          <p>0</p>
+                          <p class="marginright-auto">Tax</p>
+                          <p>{{$totalTax}}</p>
                       </div>
                       <div class="d-flex">
-                          <p class="marginright-auto">shipping</p>
-                          <p>0</p>
+                          <p class="marginright-auto">Shipping</p>
+                          <p>{{$totalShipping}}</p>
                       </div>
                       <div class="d-flex">
-                          <p class="marginright-auto">total</p>
-                          <p>0</p>
+                          <p class="marginright-auto">Total</p>
+                          <p>{{$refundTotal}}</p>
                       </div>
                       <!-- Aqui terminan -->
                     </div>
                     <div class="paddingtop-1 padding-container-1 border-1 marginbottom-2">
                       <div class="d-flex">
-                        <input class="checkbox1" type="checkbox" name="tax">
+                        <input class="checkbox1" wire:model='goingToRefundTax' wire:click="$emitSelf('goingToRefundTaxUpdate')" type="checkbox" name="tax">
                         <h5>Tax</h5>
                       </div>
                       <div class="d-flex">
-                        <input class="checkbox1" type="checkbox" name="shipping">
+                        <input class="checkbox1" wire:model='goingToRefundShipping' wire:click="$emitSelf('goingToRefundShippingUpdate')" type="checkbox" name="shipping">
                         <h5>Shipping</h5>
                       </div>
                     </div>

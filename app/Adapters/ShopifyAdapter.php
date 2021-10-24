@@ -74,8 +74,10 @@ class ShopifyAdapter implements OrdersProviderContract
         $this->shop = User::where('name', $shop)->first();
     }
 
-    public function issueRefundForOrder($orderId, $itemsRefunded, $orderNote = "", $customerEmail)
+    public function issueRefundForOrder($orderId, $refundData, $orderNote = "", $customerEmail)
     {
+        $itemsRefunded = $refundData->itemsRefunded;
+        $totalRefunded = $refundData->refundTotal;
         /**
          * Here we fetch the order again from the shopify API 
          * so we can use some of the properties
@@ -85,7 +87,6 @@ class ShopifyAdapter implements OrdersProviderContract
         $order = $this->getOrderById($orderId);
         $orderNote.= "\n" . "Refunded via Instntly";
         $orderNote.= "\n" . "Refunded Items: ";
-        $totalRefunded = 0;
         foreach ($itemsRefunded as $item) {
             $orderNote.= "\n" . "------------------------";
             $orderNote.= "\n" ."Name: " . $item['name'];
@@ -93,12 +94,18 @@ class ShopifyAdapter implements OrdersProviderContract
             $orderNote.= "\n "."Unit Price: " . $item['unit_price'];
             $orderNote.= "\n "."Total amount Refunded: " . $item['total_refunded'];
             $orderNote.= "\n" . "------------------------";
-            $totalRefunded += $item['total_refunded'];
         }
-        $orderNote.= "\n" . "Total Refunded: " . $totalRefunded ;
+
+        if ($refundData->shipping['refund']) {
+            $orderNote.= "\n "."Shipping refunded: " . $refundData->shipping['amount'];
+        }
+        if ($refundData->tax['refund']) {
+            $orderNote.= "\n "."Tax refunded: " . $refundData->tax['amount'];
+        }
+
+        $orderNote.= "\n" . "Total Refunded: " . $refundData->refundTotal ;
 
         $orderNote.= "\n" . $order->getResource()['note'];
-
         $data = new stdClass;
         $data->amount = $totalRefunded;
         $data->orderId = $order->getResource()['id'];

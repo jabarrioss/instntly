@@ -20,6 +20,9 @@ class ShopifyOrder extends BaseModel implements OrderContract
         $this->order->id = $order->id;
         $this->order->number = $order->name;
         $this->order->subTotal = $order->current_subtotal_price;
+        $this->order->currency = $order->currency;
+        $this->order->total_tax = $order->total_tax;
+        $this->order->total_shipping = $order->total_shipping_price_set['shop_money']['amount'];
         if (isset($order->customer)) {
             $this->order->customer_email = $order->customer->email;
         }else{

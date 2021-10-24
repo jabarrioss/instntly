@@ -19,6 +19,14 @@ class Order extends Component
     public $itemsCount;
     public $orderNote;
     public $refundResponse;
+    public $goingToRefundTax;
+    public $goingToRefundShipping;
+    public $refundTotal;
+
+    protected $listeners = [
+        "goingToRefundTaxUpdate",
+        "goingToRefundShippingUpdate"
+    ];
 
     public function mount($orderId, $adapter = null, $shop = null)
     {
@@ -42,6 +50,11 @@ class Order extends Component
         $this->orderNote = "";
         $this->refundResponse = ["status" => "", "message" => ""];
         $this->itemsSubtotal = 0;
+        $this->totalTax = $data->order->total_tax;
+        $this->totalShipping = $data->order->total_shipping;
+        $this->goingToRefundTax = false;
+        $this->goingToRefundShipping = false;
+        $this->refundTotal = 0;
     }
 
     public function refundWithInstntly()
@@ -50,6 +63,7 @@ class Order extends Component
         $shopAdapter = $manager->resolve($this->adapter);
         $shopAdapter->setShop($this->shop);
         $itemsRefunded = [];
+        $refundData = new \stdClass;
         foreach ($this->orderItems as $orderItem) {
             foreach ($this->selectedItems as $selectedItem => $qty) {
                 if ($orderItem['id'] == $selectedItem && $qty > 0) {
@@ -62,7 +76,11 @@ class Order extends Component
                 }
             }
         }
-        $this->refundResponse =  $shopAdapter->issueRefundForOrder($this->orderId, $itemsRefunded, $this->orderNote, $this->customerEmail);
+        $refundData->itemsRefunded = $itemsRefunded;
+        $refundData->shipping = ['refund' => $this->goingToRefundShipping, 'amount' => $this->totalShipping];
+        $refundData->tax = ['refund' => $this->goingToRefundTax, 'amount' => $this->totalTax];
+        $refundData->refundTotal = $this->refundTotal;
+        $this->refundResponse = $shopAdapter->issueRefundForOrder($this->orderId, $refundData, $this->orderNote, $this->customerEmail);
         
     }
 
@@ -80,12 +98,30 @@ class Order extends Component
         });
 
         $this->itemsSubtotal = $subTotal;
+        $this->refundTotal = $subTotal;
         
+        if ($this->goingToRefundTax) {
+            $this->refundTotal += $this->totalTax;
+        }
+
+        if ($this->goingToRefundShipping) {
+            $this->refundTotal += $this->totalShipping;
+        }
+
         foreach ($this->selectedItems as $item) {
             $totalItems += $item;
         }
-
         $this->itemsCount = $totalItems;
+    }
+
+    public function goingToRefundTaxUpdate()
+    {
+        $this->goingToRefundTax ? $this->refundTotal += $this->totalTax : $this->refundTotal -= $this->totalTax;
+    }
+
+    public function goingToRefundShippingUpdate()
+    {
+        $this->goingToRefundShipping ? $this->refundTotal += $this->totalShipping : $this->refundTotal -= $this->totalShipping;
     }
     
     public function render()
