@@ -104,7 +104,7 @@ class ShopifyAdapter implements OrdersProviderContract
         }
 
         $orderNote.= "\n" . "Total Refunded: " . $refundData->refundTotal ;
-
+        dd($refundData);
         $orderNote.= "\n" . $order->getResource()['note'];
         $data = new stdClass;
         $data->amount = $totalRefunded;
