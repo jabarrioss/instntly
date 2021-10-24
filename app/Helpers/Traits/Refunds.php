@@ -42,7 +42,7 @@ trait Refunds
             // "userFirstName" => $data->name,
             // "userLastName" => $data->lastName
         ]);
-        dd($response);
+        dd($data, $response->collect());
         if ($response->ok()) {
             return ["error" => false, "fundOrderId" => $response->collect()['fundOrder']['fundOrderId']];
         }
