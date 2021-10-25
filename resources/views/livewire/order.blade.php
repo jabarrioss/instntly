@@ -64,6 +64,9 @@
               
                 <div class="row box-container">
                   <label class="cabecero-1"for="inputEmailCustomer">Customer Email</label>
+                  @if($errors->has('customerEmail'))
+                    <span>The email should be valid</span>
+                  @endif
                   <input type="email" wire:model='customerEmail' class="form-control" id="inputEmailCustomer" placeholder="email@mail.com">
                 </div>
 
@@ -106,7 +109,11 @@
                       </div>
                     </div>
                     <div class="padding-container-1">
-                      <button class="btn btn-primary w-100" wire:click="refundWithInstntly" >Refund Order</button>
+                      @if($errors->has('customerEmail') || empty($this->customerEmail) || $itemsCount == 0)
+                        <button class="btn btn-primary w-100" wire:click="refundWithInstntly" disabled>Refund Order</button>
+                      @else
+                        <button class="btn btn-primary w-100" wire:click="refundWithInstntly">Refund Order</button>
+                      @endif
                     </div>
                   </div> <!-- CONTAINER -->
                 </div> <!-- ROW -->      

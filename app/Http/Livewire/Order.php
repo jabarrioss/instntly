@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use App\Managers\OrdersProviderManager;
+use Illuminate\Support\Facades\Validator;
 
 class Order extends Component
 {
@@ -26,6 +27,10 @@ class Order extends Component
     protected $listeners = [
         "goingToRefundTaxUpdate",
         "goingToRefundShippingUpdate"
+    ];
+
+    protected $rules = [
+        'customerEmail' => 'required|email',
     ];
 
     public function mount($orderId, $adapter = null, $shop = null)
@@ -59,6 +64,7 @@ class Order extends Component
 
     public function refundWithInstntly()
     {
+        
         $manager = new OrdersProviderManager();
         $shopAdapter = $manager->resolve($this->adapter);
         $shopAdapter->setShop($this->shop);
@@ -83,7 +89,10 @@ class Order extends Component
         $this->refundResponse = $shopAdapter->issueRefundForOrder($this->orderId, $refundData, $this->orderNote, $this->customerEmail);
         
     }
-
+    public function updated($propertyName)
+    {
+        $this->validate();
+    }
     public function updateSelectedItems($item, $qty)
     {
         $this->selectedItems[$item] = $qty;
