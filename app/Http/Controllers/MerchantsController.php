@@ -27,12 +27,13 @@ class MerchantsController extends BaseController
         
         $model = DB::transaction(function () use ($request) {
             $class = $this->class;
-            $model = $class::firstOrCreate([
-                    "username" => $request->username
-                ],
-                $request->except('shopifyLink')
-            );
 
+            $model = $class::where(['username' => $request->username])->first();
+            if (!$model) {
+                $model = $class::create($request->except('shopifyLink'));
+            }else{
+                $class::update($request->except(['shopifyLink', 'username']));
+            }
             Mint::firstOrCreate(
                 [
                     "label" => (new ShopDomain($request->shopifyLink))->toNative()

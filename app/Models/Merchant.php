@@ -32,4 +32,10 @@ class Merchant extends Authenticatable
     {
         return $this->hasMany(Mint::class);
     }
+
+    public function updateRefreshToken($refresh_token)
+    {
+        $this->refresh_token = $refresh_token;
+        $this->save();
+    }
 }

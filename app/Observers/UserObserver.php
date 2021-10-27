@@ -4,6 +4,7 @@ namespace App\Observers;
 
 use App\Models\Mint;
 use App\Models\User;
+use App\Models\Merchant;
 
 class UserObserver
 {
@@ -44,6 +45,10 @@ class UserObserver
      */
     public function deleted(User $user)
     {
+        $merchant = Merchant::find($user->merchant_id);
+        $merchant->delete();
+        $mint = Mint::where(['merchant_id' => $user->merchant_id, 'integration_id' => $user->id])->first();
+        $mint->delete();
         $user->merchant_id = 0;
         $user->save();
     }
